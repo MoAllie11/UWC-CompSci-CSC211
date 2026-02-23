@@ -6,7 +6,37 @@ import java.io.*;
 import java.text.*;
 
 public class timeMethods{
-    public static int N = ....;
+    public static int N = 32654; //max key range
+    public static int repetitions = 30;
+
+    static int[] generateData(int n) {
+        int[] data = new int[n];
+        for (int i = 0; i < n; i++) {
+            data[i] = i + 1; // sorted for binary search
+        }
+        return data;
+    }
+
+    // Linear search
+    static boolean linearSearch(int[] arr, int key) {
+        for (int value : arr) {
+            if (value == key) return true;
+        }
+        return false;
+    }
+
+    // Binary search
+    static boolean binarySearch(int[] arr, int key) {
+        int low = 0, high = arr.length - 1;
+        while (low <= high) {
+            int mid = (low + high) / 2;
+            if (arr[mid] == key) return true;
+            else if (arr[mid] < key) low = mid + 1;
+            else high = mid - 1;
+        }
+        return false;
+    }
+
     public static void main(String args[]){
 
         DecimalFormat twoD = new DecimalFormat("0.00");
