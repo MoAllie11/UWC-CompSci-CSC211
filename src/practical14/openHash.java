@@ -21,4 +21,20 @@ public class openHash {
             table[i] = new LinkedList<>();
         }
     }
+    public int hash(String key){ //scatter function
+        int h = key.hashCode();
+        h = Math.abs(h) % m;
+        return h;
+    }
+    public void insert(String key, String value){
+        int index = hash(key);
+        for (Entry e : table[index]){
+            if (e.key.equals(key)){
+                e.value = value;
+                return;
+            }
+        }
+        table[index].add(new Entry(key,value));
+    }
+
 }
