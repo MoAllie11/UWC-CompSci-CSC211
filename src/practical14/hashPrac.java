@@ -1,6 +1,7 @@
 package practical14;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,6 +20,18 @@ public class hashPrac {
         }
         Collections.shuffle(keyList);
 
+        String[][] keyValuePairs = new String[N][2]; // [key, value]
+
+        for (int i = 0; i < N; i++) {
+            String key = String.valueOf(keyList.get(i));
+            String value = String.valueOf(i + 1); // numbering from 1 to N
+            keyValuePairs[i][0] = key;
+            keyValuePairs[i][1] = value;
+        }
+
+        int usableSize = 950_000;
+        String[][] usablePairs = Arrays.copyOfRange(keyValuePairs, 0, usableSize);
+
     }
 }
     /*long start, finish;
@@ -36,6 +49,4 @@ public class hashPrac {
         time = (double) (finish - start);
         runTime += time;
         runTime2 += (time * time);
-
-
 /*/
