@@ -1,0 +1,100 @@
+//hash function for strings
+int hash(String s, int M) {
+    int hash = 0;
+    for (int i = 0; i < s.length(); i++) {
+        hash = (31 * hash + s.charAt(i)) % M;
+    }
+    return hash;
+}
+
+//The hashSearch method
+boolean hashSearch(string id) {
+int i = hash(id);
+i = d[i];
+while (i != 0 && store[i].key != id) {
+i = store[i].link; }
+return store[i].key == id; }
+
+//Hash class
+public class tryHash {
+    public static void main (String args[]) {
+        String data [] = {”zero”, ”one”, ”two”, ”three”, ”four”, ”five”,
+                            ”six”, ”seven”, ”eight”, ”nine”, ”ten”,
+                            ”eleven”, ”twelve”, ”thirteen”, ”fourteen”, ”fifteen”,
+                            ”sixteen”, ”seventeen”};
+int k;
+tableHash H;
+
+    H = new tableHash();
+
+    for (k = 0; k < data.length; k++)
+        H.hashInsert(data[k]);
+    H.display(); }}
+//Here we have declared a reference or variable H to a hash table, and then
+  instantiated or created it using the constructor tableHash(). Next, we insert the
+  data items one-by-one into the H, and finally display the table.
+
+//This adds ASCII values of characters and mods by table size
+int h(String id) {
+    int hash = 0;
+    for (int ch = 0; ch < id.length(); ch++) {
+        hash = (hash + (int)id.charAt(ch)) % m;
+    }
+    return hash + 1; // ensures index in [1..m]
+}
+
+//Chained hash insert (array of nodes)
+void hashInsert(String id) {
+    ++n; // increment number of items
+    store[n].key = (long)n; // assign a key
+    int i = h(id); // compute hash
+    store[n].next = d[i]; // link to existing chain
+    store[n].id = id; // store the string
+    d[i] = n; // update head of chain
+}
+//Each slot d[i] points to the latest inserted node, forming a linked list
+
+//Chained hash search
+boolean hashSearch(String id) {
+    int i = h(id); // compute hash
+    i = d[i]; // get head of chain
+    while (i != 0 && !store[i].id.equals(id)) {
+        i = store[i].next; // traverse chain
+    }
+    return store[i].id.equals(id);
+}
+//Traverses the chain until either the key is found or the chain ends
+
+//Linked list style implementation
+//Instead of integer indices, nodes directly reference each other
+void hashInsert(long key, String id) {
+    node n = new node(key, id);
+    int i = hash(id);
+    n.next = d[i]; // link to existing node
+    d[i] = n; // update head
+}
+//Cleaner, since it uses actual object references
+
+//Seperate chaining table
+class SeparateChainingHashST<Key, Value> {
+    private int M = 997; // table size
+    private SequentialSearchST<Key, Value>[] st;
+
+    public SeparateChainingHashST() {
+        st = new SequentialSearchST[M];
+        for (int i = 0; i < M; i++)
+            st[i] = new SequentialSearchST<>();
+    }
+
+    private int hash(Key key) {
+        return (key.hashCode() & 0x7fffffff) % M;
+    }
+
+    public Value get(Key key) {
+        return st[hash(key)].get(key);
+    }
+
+    public void put(Key key, Value val) {
+        st[hash(key)].put(key, val);
+    }
+}
