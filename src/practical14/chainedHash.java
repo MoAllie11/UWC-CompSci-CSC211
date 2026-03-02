@@ -30,4 +30,16 @@ public class chainedHash {
         return h;
     }
     //insert method
+    public void insert(String key, String value){
+        int index = hash(key);
+        for (Entry e : table[index]){
+            if (e.key.equals(key)){
+                e.value = value;
+                return;
+            }
+        }
+        table[index].addLast(new Entry(key,value));
+        size++;
+    }
+    //lookup method
 }
