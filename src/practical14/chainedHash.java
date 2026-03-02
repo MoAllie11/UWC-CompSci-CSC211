@@ -42,4 +42,26 @@ public class chainedHash {
         size++;
     }
     //lookup method
+    public String lookup(String key){
+        int index = hash(key);
+        for (Entry e : table[index]){
+            if (e.key.equals(key)){
+                return e.value;
+            }
+        }
+        return null;
+    }
+    //remove method
+    public String remove(String key){
+        int index = hash(key);
+        for (Entry e : table[index]){
+            if (e.key.equals(key)){
+                String val = e.value;
+                table[index].remove(e);
+                size--;
+                return val;
+            }
+        }
+        return null;
+    }
 }
