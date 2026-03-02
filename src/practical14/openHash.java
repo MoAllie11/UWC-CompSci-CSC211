@@ -14,4 +14,11 @@ public class openHash {
             this.value = value;
         }
     }
+    public openHash(int m){
+        this.m = m;
+        table = new LinkedList[m];
+        for (int i=0; i<m; i++){
+            table[i] = new LinkedList<>();
+        }
+    }
 }
