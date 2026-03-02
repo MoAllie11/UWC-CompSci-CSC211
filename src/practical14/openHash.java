@@ -26,7 +26,7 @@ public class openHash {
         h = Math.abs(h) % m;
         return h;
     }
-    public void insert(String key, String value){
+    public void insert(String key, String value){ //insert method
         int index = hash(key);
         for (Entry e : table[index]){
             if (e.key.equals(key)){
@@ -36,5 +36,13 @@ public class openHash {
         }
         table[index].add(new Entry(key,value));
     }
-
+    public String lookup(String key){ //lookup method
+        int index = hash(key);
+        for (Entry e : table[index]){
+            if (e.key.equals(key)){
+                return e.value;
+            }
+        }
+        return null; //not found
+    }
 }
