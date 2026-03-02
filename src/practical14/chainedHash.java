@@ -7,6 +7,27 @@ public class chainedHash {
     private int size; //no. of k/v pairs stored
 
     private static class Entry{
+        String key;
+        String value;
 
+        Entry(String key, String value){
+            this.key = key;
+            this.value = value;
+        }
     }
+    public chainedHash(int m){
+        this.m = m;
+        table = new LinkedList[m];
+        for (int i=0; i<m; i++){
+            table[i] = new LinkedList<>();
+        }
+        size = 0;
+    }
+    //scatter function
+    public int hash(String key){
+        int h = key.hashCode();
+        h = Math.abs(h) % m;
+        return h;
+    }
+    //insert method
 }
