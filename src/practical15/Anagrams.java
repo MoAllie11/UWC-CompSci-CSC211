@@ -38,6 +38,35 @@ public class Anagrams {
                     }
                 }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //output dictionary in LaTeX format
+        try (PrintWriter out = new PrintWriter(new FileWriter("anagrams.tex"))) {
+            out.println("\\documentclass{article}");
+            out.println("\\begin{document}");
+            out.println("\\section*{Dictionary of Anagrams}");
+
+            for (Map.Entry<String, Set<String>> entry : anagramDict.entrySet()) {
+                Set<String> group = entry.getValue();
+                if (group.size() > 1) { //only print real anagram groups
+                    out.println("\\textbf{" + entry.getKey() + "} : " + group);
+                    out.println("\\\\");
+                }
+            }
+
+            out.println("\\end{document}");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //also print to console
+        for (Map.Entry<String, Set<String>> entry : anagramDict.entrySet()) {
+            Set<String> group = entry.getValue();
+            if (group.size() > 1) {
+                System.out.println(entry.getKey() + " -> " + group);
+            }
         }
     }
 }
