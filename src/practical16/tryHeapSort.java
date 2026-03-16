@@ -5,6 +5,11 @@ import java.io.*;
 import java.util.*;
 
 public class tryHeapSort {
+    //clean word (remove punctuation except apostrophes, lowercase)
+    private static String cleanWord(String w) {
+        return w.replaceAll("[^a-zA-Z']", "").toLowerCase();
+    }
+
     private static void swap(String[] arr, int i, int j){
         String temp = arr[i];
         arr[i] = arr[j];
@@ -51,18 +56,48 @@ public class tryHeapSort {
             heapify(arr, i, 0);
         }
     }
+
+    //Read and clean words
+    private static List<String> readWords(String filename) throws IOException {
+        List<String> words = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] tokens = line.split("\\s+");
+                for (String w : tokens) {
+                    w = cleanWord(w);
+                    if (!w.isEmpty()) words.add(w);
+                }
+            }
+        }
+        return words;
+    }
     //Main
     public static void main(String[] args) throws IOException{
-        String[] test = {"banana", "kiwi", "grape", "apple", "orange", "granadilla", "mango"};
-
+        //String[] test = {"banana", "kiwi", "grape", "apple", "orange", "granadilla", "mango"};
+        List <String> words = readWords("ulysses.text");
+        String[] arrBU = words.toArray(new String[0]);
         //Bottom-up build and sort
         long startBU = System.nanoTime();
-        buildHeapBottomUp(test);
-        heapSort(test);
+        heapSort(arrBU);
         long endBU = System.nanoTime();
-        System.out.println("Bottom-up sorted: " + Arrays.toString(test));
+        System.out.println("Bottom-up sorted: " + Arrays.toString(arrBU));
         System.out.println("Bottom-up time: " + (endBU - startBU) + "ns");
 
         //Top-down build
+        List<String> heapTD = new ArrayList<>();
+        long startTD = System.nanoTime();
+        for(String w : words) insertTopDown(heapTD, w);
+        long endTD = System.nanoTime();
+        System.out.println("Top-down heap size: " + heapTD.size());
+        System.out.println("Top-down build time: " + (endTD - startTD) + "ns");
+
+        // Convert top-down heap to array and sort
+        String[] arrTD = heapTD.toArray(new String[0]);
+        long startSortTD = System.nanoTime();
+        heapSort(arrTD);
+        long endSortTD = System.nanoTime();
+        System.out.println("Top-down sorted: " + Arrays.toString(arrTD));
+        System.out.println("Top-down sort time: " + (endSortTD - startSortTD) + " ns");
     }
 }
