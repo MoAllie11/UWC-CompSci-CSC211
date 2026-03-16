@@ -44,4 +44,12 @@ public class tryHeapSort {
         }
     }
     //Heap sort
+    private static void heapSort(String[] arr){
+        buildHeapBottomUp(arr);
+        for(int i = arr.length - 1; i>0; i--){
+            swap(arr,0,i);
+            heapify(arr, i, 0);
+        }
+    }
+    //Main
 }
