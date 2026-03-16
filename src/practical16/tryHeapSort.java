@@ -52,4 +52,17 @@ public class tryHeapSort {
         }
     }
     //Main
+    public static void main(String[] args) throws IOException{
+        String[] test = {"banana", "kiwi", "grape", "apple", "orange", "granadilla", "mango"};
+
+        //Bottom-up build and sort
+        long startBU = System.nanoTime();
+        buildHeapBottomUp(test);
+        heapSort(test);
+        long endBU = System.nanoTime();
+        System.out.println("Bottom-up sorted: " + Arrays.toString(test));
+        System.out.println("Bottom-up time: " + (endBU - startBU) + "ns");
+
+        //Top-down build
+    }
 }
