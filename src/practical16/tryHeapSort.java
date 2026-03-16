@@ -23,4 +23,11 @@ public class tryHeapSort {
         }
     }
     //Build heap bottom-up
+    private static void buildHeapBottomUp(String[] arr){
+        int n = arr.length;
+        for (int i=n/2 -1; i>=0; i--){
+            heapify(arr, n, i);
+        }
+    }
+    //Insert for top-down
 }
