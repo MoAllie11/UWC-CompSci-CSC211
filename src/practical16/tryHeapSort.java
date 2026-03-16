@@ -1,3 +1,5 @@
+//4590147
+
 package practical16;
 import java.io.*;
 import java.util.*;
@@ -30,4 +32,16 @@ public class tryHeapSort {
         }
     }
     //Insert for top-down
+    public static void insertTopDown(List<String> heap, String value){
+        heap.add(value);
+        int i = heap.size()-1;
+        while(i>0){
+            int parent = (i-1)/2;
+            if(heap.get(i).compareTo(heap.get(parent))>0){
+                Collections.swap(heap, i, parent);
+                i = parent;
+            } else break;
+        }
+    }
+    //Heap sort
 }
