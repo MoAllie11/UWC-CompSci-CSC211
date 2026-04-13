@@ -1,0 +1,18 @@
+Four pillars: Encapsulation, Abstraction, Inheritance, Polymorphism
+
+INHERITANCE
+A class at the top of the hierarchy: superclass/base class/parent class
+Class derived from another class: Subclass/extended class/child class
+Inheritance promotes the concept of recycling code
+e.g) A superclass named Animal with a subclass Cat
+public class Animal {
+    public void Move() {
+        Console.WriteLine("I am walking!");
+        }
+    }
+public class Cat : Animal { //Cat extends Animal
+}
+--Method Move() can be called from both Animal and Cat
+--It is possible for multiple subclasses to inherit from one superclass
+
+POLYMORPHISM
