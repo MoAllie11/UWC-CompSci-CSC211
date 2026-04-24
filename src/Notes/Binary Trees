@@ -1,0 +1,9 @@
+Binary Trees are proper/full if each node has either zero or two children
+Used for recurring Y/N decisions (decision trees)
+Level - The set of all nodes of a binary tree T at the same depth d as level d of T
+In general: Level d has max 2^d nodes
+Types: Proper, Complete, Perfect, Degenerate (right/left skewed)
+Implementation (linked-nodes structure and array structure)
+
+Exercise: Draw a binary tree with 3 levels, each level is full, and start with the root as 1 (base numbering)
+Then compute: left(p),right(p) and parent(p)
