@@ -1,7 +1,7 @@
 //4590147
 package practical23A;
 
-public class heapMethods {
+public class practical23A {
     public static void print(int heap[]){
         int n = heap.length-1; //we start indexing at 1
         for (int i=1; i<=n; i++){ //iterates through the array
